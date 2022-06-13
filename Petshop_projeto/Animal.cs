@@ -24,10 +24,6 @@ namespace Petshop_projeto
         public bool Castrado { get; set; }
         //   private DateTime DataCadastrado { get { return DateTime.Now; }} //aqui também não tá inicializado
 
-        public Guid ObterCodigo()
-        {
-            return Codigo;
-        }
 
         //        public void SetarCodigo(Guid codigo)
         //        {
@@ -85,28 +81,28 @@ namespace Petshop_projeto
         public void ImprimirAnimal()
         {
             Console.WriteLine("Imprimindo Pet");
-            Console.WriteLine(Codigo);
-            Console.WriteLine(Nome);
-            Console.WriteLine(Especie);
-            Console.WriteLine(Raca);
-            Console.WriteLine(Cor);
-            Console.WriteLine(Porte);
-            Console.WriteLine(Peso);
-            Console.WriteLine(Nascimento);
-            Console.WriteLine(NecessidadesEspeciais());
+            Console.WriteLine("Codigo: " + Codigo);
+            Console.WriteLine("Nome: " + Nome);
+            Console.WriteLine("Especie: " + Especie);
+            Console.WriteLine("Raça: " + Raca);
+            Console.WriteLine("Cor: " + Cor);
+            Console.WriteLine("Porte: " + Porte);
+            Console.WriteLine("Peso: " + Peso);
+            Console.WriteLine("Data de nascimento: " + Nascimento);
+            Console.WriteLine("Apresenta necessidades especiais. " + NecessidadesEspeciais());
 
             if (NecessidadesEspeciais())
             {
                 Console.WriteLine("Doenças e Alergias:");
                 foreach (string doencaalergia in DoencasAlergias)
                 {
-                    Console.WriteLine(doencaalergia);
+                    Console.WriteLine("Necessida especial: " + doencaalergia);
                 }
             }
-            Console.WriteLine(Agressivo);
-            Console.WriteLine(Sexo);
-            Console.WriteLine(Castrado);
-            //            Console.WriteLine(DataCadastrado);
+            Console.WriteLine("Pet agressivo: " + Agressivo);
+            Console.WriteLine("Sexo do animal: " + Sexo);
+            Console.WriteLine("Animal castrado: " + Castrado);
+            Console.WriteLine("Data do cadastro no Petshop: " + DataCadastro);
             Console.WriteLine("");
         }
 

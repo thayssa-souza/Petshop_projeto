@@ -12,6 +12,10 @@
             string respostaAgressivo;
             bool respostaSexoCorreta = false;
             string respostaSexo = "";
+            bool respostaCastradoCorreta = false;
+            string respostaCastrado = "";
+            bool respostaNecessidadesCorreta = false;
+            string respostaNecessidadesEspeciais = "";
 
             Animal pet = new Animal();
             Console.WriteLine("Bem-vindo ao Pet shop do seu bairro.");
@@ -22,12 +26,12 @@
             while (respostaCorreta == false)
             {
                 resposta = Console.ReadLine();
-                if ((resposta == "1") || (resposta == "um") || (resposta == "UM") || (resposta == "uM") || (resposta == "Um"))
+                if ((resposta == "1") || (resposta.ToUpper() == "UM"))
                 {
                     pet.Especie = Especie.Cachorro;
                     respostaCorreta = true;
                 }
-                else if ((resposta == "2") || (resposta == "dois") || (resposta == "Dois") || (resposta == "DOIS"))
+                else if ((resposta == "2") || (resposta.ToUpper() == "DOIS"))
                 {
                     pet.Especie = Especie.Gato;
                     respostaCorreta = true;
@@ -48,12 +52,12 @@
             while (respostaPorteCorreta == false)
             {
                 respostaPorte = Console.ReadLine();
-                if ((respostaPorte == "1") || (respostaPorte == "um") || (respostaPorte == "UM") || (respostaPorte == "uM") || (respostaPorte == "Um"))
+                if ((respostaPorte == "1") || (respostaPorte.ToUpper() == "UM"))
                 {
                     pet.Porte = Porte.Pequeno;
                     respostaPorteCorreta = true;
                 }
-                else if ((respostaPorte == "2") || (respostaPorte == "dois") || (respostaPorte == "Dois") || (respostaPorte == "DOIS"))
+                else if ((respostaPorte == "2") || (respostaPorte.ToUpper() == "DOIS"))
                 {
                     pet.Porte = Porte.Grande;
                     respostaPorteCorreta = true;
@@ -70,19 +74,52 @@
             Console.WriteLine("Qual a data de nascimento do seu pet? Digite DD/MM/AAAA.");
             Console.WriteLine("Caso não saiba o dia exato, escreva 00 no local do dia.");
             pet.Nascimento = DateTime.Parse(Console.ReadLine());
+            Console.WriteLine($"O/a {pet.Nome} tem alguma necessidade especial?");
+            Console.WriteLine("Digite 1 para Sim ou digite 2 para Não.");
+            while (respostaNecessidadesCorreta == false)
+            {
+                respostaNecessidadesEspeciais = Console.ReadLine();
+                if ((respostaNecessidadesEspeciais == "1") || (respostaNecessidadesEspeciais.ToUpper() == "UM") || (respostaNecessidadesEspeciais.ToUpper() == "SIM"))
+                {
+                    while (true)
+                    {
+                        Console.WriteLine("Digite abaixo qual a doença e/ou alergia do pet:");
+                        pet.AdicionarDoencasAlergias(Console.ReadLine());
+                        Console.WriteLine("Há outra doença e/ou alergia? Digite 1 se houver ou digite 2 se não houver.");
+                        string respostaDoencaAlergia = Console.ReadLine();
+                        if (respostaDoencaAlergia == "1" || respostaDoencaAlergia.ToUpper() == "UM" || respostaDoencaAlergia.ToUpper() == "SIM")
+                            continue;
+                        else
+                        {
+                            respostaNecessidadesCorreta = true;
+                            break;
+                        }
+                    }
+                }
+                else if ((respostaNecessidadesEspeciais == "2") || (respostaNecessidadesEspeciais.ToUpper() == "DOIS") || (respostaNecessidadesEspeciais.ToUpper() == "NÃO"))
+                {
+                    respostaNecessidadesCorreta = true;
+                }
+                else
+                {
+                    Console.WriteLine("Respota inválida.");
+                    Console.WriteLine($"Digite 1 se {pet.Nome} necessita de Necessidades Especiais ou digite 2 se Não necessita:");
+                    continue;
+                }
+            }
             Console.WriteLine($"O/a {pet.Nome} é agressivo?");
             Console.WriteLine("Digite 1 para Sim ou digite 2 para Não");
             while (respostaAgressivoCorreta == false)
             {
                 respostaAgressivo = Console.ReadLine();
-                if ((respostaAgressivo == "1") || (respostaAgressivo == "um") || (respostaAgressivo == "UM") || (respostaAgressivo == "uM") || (respostaAgressivo == "Um") || (respostaAgressivo == "Sim") || (respostaAgressivo == "SIM") || (respostaAgressivo == "sim"))
+                if ((respostaAgressivo == "1") || (respostaAgressivo.ToUpper() == "UM") || (respostaAgressivo.ToUpper() == "SIM"))
                 {
                     pet.Agressivo = true;
                     Console.WriteLine("Lamentamos, mas, por enquanto, nosso petshop não atende animais agressivos.");
                     respostaAgressivoCorreta = true;
                     return;
                 }
-                else if ((respostaAgressivo == "2") || (respostaAgressivo == "dois") || (respostaAgressivo == "Dois") || (respostaAgressivo == "DOIS") || (respostaAgressivo == "Não") || (respostaAgressivo == "Nao") || (respostaAgressivo == "NÃO") || (respostaAgressivo == "NAO") || (respostaAgressivo == "não") || (respostaAgressivo == "nao"))
+                else if ((respostaAgressivo == "2") || (respostaAgressivo.ToUpper() == "DOIS") || (respostaAgressivo.ToUpper() == "NÃO"))
                 {
                     pet.Agressivo = false;
                     respostaAgressivoCorreta = true;
@@ -99,12 +136,12 @@
             while (respostaSexoCorreta == false)
             {
                 respostaSexo = Console.ReadLine();
-                if ((respostaSexo == "1") || (respostaSexo == "um") || (respostaSexo == "UM") || (respostaSexo == "uM") || (respostaSexo == "Um") || (respostaSexo == "F") || (respostaSexo == "f") || (respostaSexo == "feminino") || (respostaSexo == "FEMININO") || (respostaSexo == "Feminino"))
+                if ((respostaSexo == "1") || (respostaSexo.ToUpper() == "UM") || (respostaSexo.ToUpper() == "F") || (respostaSexo.ToUpper() == "FEMININO"))
                 {
                     pet.Sexo = 'F';
                     respostaSexoCorreta = true;
                 }
-                else if ((respostaSexo == "2") || (respostaSexo == "dois") || (respostaSexo == "Dois") || (respostaSexo == "DOIS") || (respostaSexo == "M") || (respostaSexo == "m") || (respostaSexo == "masculino") || (respostaSexo == "MASCULINO") || (respostaSexo == "Masculino"))
+                else if ((respostaSexo == "2") || (respostaSexo.ToUpper() == "DOIS") || (respostaSexo.ToUpper() == "M") || (respostaSexo.ToUpper() == "MASCULINO"))
                 {
                     pet.Sexo = 'M';
                     respostaSexoCorreta = true;
@@ -116,17 +153,32 @@
                     continue;
                 }
             }
+
+            Console.WriteLine("Seu pet é castrado?");
+            Console.WriteLine("Digite 1 para Sim ou digite 2 para Não.");
+            while (respostaCastradoCorreta == false)
+            {
+                respostaCastrado = Console.ReadLine();
+                if ((respostaCastrado == "1") || (respostaCastrado.ToUpper() == "UM") || (respostaCastrado.ToUpper() == "SIM"))
+                {
+                    pet.Castrado = true;
+                    respostaCastradoCorreta = true;
+                }
+                else if ((respostaCastrado == "2") || (respostaCastrado.ToUpper() == "DOIS") || (respostaCastrado.ToUpper() == "NÃO"))
+                {
+                    pet.Castrado = false;
+                    respostaCastradoCorreta = true;
+                }
+                else
+                {
+                    Console.WriteLine("Respota inválida.");
+                    Console.WriteLine($"Digite 1 se {pet.Nome} for Castrado ou digite 2 se Não for castrado:");
+                    continue;
+                }
+            }
             Console.WriteLine("----------------------------------");
             Console.WriteLine("CADASTRO FINALIZADO:");
-            Console.WriteLine(pet.Nome);
-            Console.WriteLine(pet.Especie);
-            Console.WriteLine(pet.Raca);
-            Console.WriteLine(pet.Cor);
-            Console.WriteLine(pet.Porte);
-            Console.WriteLine(pet.Peso);
-            Console.WriteLine(pet.Nascimento);
-            Console.WriteLine(pet.Agressivo);
-            Console.WriteLine(pet.Sexo);
+            pet.ImprimirAnimal(); //chamando a função
         }
     }
 }
